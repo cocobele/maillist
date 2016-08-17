@@ -1,0 +1,84 @@
+BODY {
+	SCROLLBAR-FACE-COLOR: #dee3e7; FONT-SIZE: 12px; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #dee3e7; COLOR: #000000; SCROLLBAR-3DLIGHT-COLOR: #d1d7dc; SCROLLBAR-ARROW-COLOR: #006699; SCROLLBAR-TRACK-COLOR: #efefef; FONT-FAMILY: 宋体; SCROLLBAR-DARKSHADOW-COLOR: #98aab1; BACKGROUND-COLOR: #ffffff
+}
+
+p,td
+{
+    FONT: 9pt "宋体"; TEXT-TRANSFORM: none;; LINE-HEIGHT: 14pt
+}
+
+INPUT
+{
+	BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #cccccc; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #cccccc; PADDING-TOP: 1px; HEIGHT: 18px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #cccccc
+}
+select,textarea
+{
+    FONT-SIZE: 9pt;
+}
+
+INPUT.text
+{
+     height:16px;background-color:#ffffff;border:1 solid black;
+}
+INPUT.check
+{
+     height:16px;
+}
+INPUT.buttonface
+{
+    background-color: #D2E9FF;
+    COLOR: #000080;
+    FONT-SIZE: 9pt
+}
+
+A:link {
+	FONT-SIZE: 9pt; COLOR: #333399; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-SIZE: 9pt; COLOR: purple; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-SIZE: 9pt; COLOR: #ff6633; TEXT-DECORATION: none
+}
+
+.tblsortbody {
+	BORDER-RIGHT: #30404f 3px solid; BORDER-TOP: #b8d2e9 3px solid; BACKGROUND: #deebff; BORDER-LEFT: #b8d2e9 3px solid; BORDER-BOTTOM: #30404f 3px solid
+}
+
+
+BUTTON {
+	BORDER-RIGHT: darkblue 1px solid; BORDER-TOP: darkblue 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: darkblue 1px solid; WIDTH: 60px; CURSOR: hand; COLOR: navy; BORDER-BOTTOM: darkblue 1px solid; HEIGHT: 22px; BACKGROUND-COLOR: #ffffff
+}
+
+
+.btnButton {
+	BORDER-RIGHT: 1pt ridge; BORDER-TOP: 1pt ridge; FONT-SIZE: 9pt; BORDER-LEFT: 1pt ridge; WIDTH: 44pt; COLOR: white; BORDER-BOTTOM: 1pt ridge; FONT-FAMILY: 宋体; HEIGHT: 15pt; BACKGROUND-COLOR: #619bd8; TEXT-ALIGN: center; FONT-VARIANT: small-caps
+}
+
+.chngbutton {
+	BORDER-RIGHT: darkblue 1px solid; BORDER-TOP: darkblue 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: darkblue 1px solid; WIDTH: 60px; COLOR: #ffffff; BORDER-BOTTOM: darkblue 1px solid; HEIGHT: 22px; BACKGROUND-COLOR: #00b8fd
+}
+
+.whitebutton {
+	height:20px;background-color:#FAFAFA;border:1 solid black
+}
+
+.InputNormal {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-WEIGHT: normal; FONT-SIZE: 9pt; BORDER-LEFT: medium none; BORDER-BOTTOM: black 1pt solid; FONT-FAMILY: 宋体; BACKGROUND-COLOR: #dedede
+}
+
+.txtfield 
+{
+	BORDER-RIGHT: #666666 1px solid; BORDER-TOP: #666666 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: #666666 1px solid; BORDER-BOTTOM: #666666 1px solid; align: absmiddle
+}
+
+.OfficeLogin {
+	BORDER-RIGHT: thin outset; BORDER-TOP: thin outset; BORDER-LEFT: thin outset; BORDER-BOTTOM: thin outset
+}
+
+.clsMenu {
+cursor: default;color: menutext;position: absolute;width: 130px;background-color: menu;border: 1 solid buttonface;visibility:hidden;border: 2 outset buttonhighlight;
+}
+.menuitems{
+	font-size: 12px; color: #000000;padding-left:20px;padding-right:10px;line-height: 18px
+}

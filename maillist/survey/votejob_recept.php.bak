@@ -1,0 +1,83 @@
+<?
+
+include ("../config.php");
+
+$db = mysql_connect("localhost", "$mysql_user","$mysql_pwd");
+mysql_select_db("maillist",$db);
+
+
+$sql="select count(*) from Vote_Template_Feedback where Vote_Template_ID='$Vote_Template_ID' and FeedbackEmail='$feedemail'";
+//echo $sql."<br>";
+$result = mysql_query($sql,$db);
+$myrow = mysql_fetch_row($result);
+if($myrow[0]>0)
+{
+   echo "<p align=center><br><br><font style=\"font-size:14.8px;color=red\">您已经提交过调查问卷，无须再次提交！";
+   exit;
+}
+
+$IP = getenv("REMOTE_ADDR");
+
+// 把客户传回的调查报告取得的用户信息填入用户调查反馈库中
+$sql = "INSERT INTO Vote_Template_Feedback(FeedbackEmail,Vote_Template_ID,Listname,Username,Name,ID_Card,Sex,Age,Birthday,
+	Region,Address,Zipcode,Tel,Mobile,Email,QQ,MSN,Education,Career,Company,Title,Income,IP,Request_time) 
+	VALUES ('$feedemail','$Vote_Template_ID','$listname','$Username','$Name','$Identity','$Sex','$Age','$Birth',
+	'$Region','$Address','$Zipcode','$Tel','$Mobile','$Email','$QQ','$MSN','$Education','$Career','$Company',
+	'$Title','$Income','$IP',NOW())";
+
+//echo $sql."<br>";
+$result = mysql_query($sql);
+
+// 把客户传回的调查报告细节填入用户调查反馈库中
+
+for($i=1;$i<=$ItemCount;$i++)
+{
+    $Array_Name="Item_ID".$i;
+    $Array=$$Array_Name;
+    for($j=0;$j<count($$Array_Name);$j++)
+    {
+        $sql = "INSERT INTO Vote_Template_Feedback_Detail(FeedbackEmail,Vote_Template_ID,Item_ID)
+	VALUES ('$feedemail','$Vote_Template_ID','".$Array[$j]."')";
+    	//echo $sql."<br>";
+    	$result = mysql_query($sql);
+    }
+}
+
+?>
+
+<HTML><HEAD>
+<TITLE>调查报告</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<style type=text/css>
+BODY {
+	SCROLLBAR-FACE-COLOR: #dee3e7; FONT-SIZE: 12px; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #dee3e7; COLOR: #000000; SCROLLBAR-3DLIGHT-COLOR: #d1d7dc; SCROLLBAR-ARROW-COLOR: #006699; SCROLLBAR-TRACK-COLOR: #efefef; FONT-FAMILY: 宋体; SCROLLBAR-DARKSHADOW-COLOR: #98aab1; BACKGROUND-COLOR: #ffffff
+}
+p,td
+{
+    FONT: 14.8px \"宋体\"; TEXT-TRANSFORM: none; LINE-HEIGHT: 14pt
+}
+INPUT
+{
+	BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #cccccc; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #cccccc; PADDING-TOP: 1px; HEIGHT: 18px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #cccccc
+}
+select,textarea
+{
+    FONT-SIZE: 9pt;
+}
+A:link {
+	FONT-SIZE: 9pt; COLOR: #333399; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-SIZE: 9pt; COLOR: purple; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-SIZE: 9pt; COLOR: #ff6633; TEXT-DECORATION: none
+}
+</style>
+
+</HEAD>
+<BODY leftMargin=0 topMargin=0>
+
+<br>
+<br>
+<p align=center><br><br><font style="font-size:14.8px;color=red">调查问卷提交完毕，感谢您大力配合！

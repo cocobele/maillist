@@ -1,0 +1,263 @@
+<?
+
+  include ("../config.php");
+
+  session_start();
+
+ if(UserAuth($AdminUser,$AdminAuthID)==false)
+ {
+	MsgBox("系统超时或非法操作!",0,"/admin/");
+	exit;
+ }
+               
+
+$db = mysql_connect("localhost", "$mysql_user","$mysql_pwd");
+mysql_select_db("maillist",$db);
+
+/////////////////////////////////////////////////////
+//
+// flag:
+//     Add 修改或增加
+//       others 显示编辑页面
+//
+/////////////////////////////////////////////////////
+
+if($flag=="Add")
+{
+
+     $Emails=explode("\r\n",$keywords);
+     
+     if(Count($Emails)==0)
+     {
+         MsgBox("您未设置任何随机邮箱名！",1,"mailbox_batch.php","self");
+         exit;
+     }
+     
+     if(Count($domains)==0)
+     {
+         MsgBox("您未指定任何邮箱域名！",1,"mailbox_batch.php","self");
+         exit;
+     }
+
+     $Quota="NOQUOTA";
+     $Email_Pwd="bizsky123";
+     
+     $valid=array();
+     $invalid=array();
+     for($i=0;$i<Count($Emails);$i++)
+     {
+         $EmailName=$Emails[$i];
+         for($j=0;$j<Count($domains);$j++)
+         {
+             $domain=$domains[$j];
+             $Email=$EmailName."@".$domain;
+
+             //创建用户信箱
+             echo "<!--";
+  	     $command ="$program_dir/vadduser -c \"$EmailName\" -q $Quota $Email $Email_Pwd";
+  	     echo $command;
+  	     system("$command \n",$return);
+             echo "-->";
+  	     if($return=="0")
+  	     {
+  	         if($valid[$domain]=="") $valid[$domain]=0;
+  	          $valid[$domain]++;
+
+                 $sql="insert into Mailbox(Mailbox,Password,Domain) values('$EmailName','$Email_Pwd','$domain')";
+                 //echo $sql."<br>";
+                 $result = mysql_query($sql);
+  	     }
+  	     else
+  	     {
+  	         if($invalid[$domain]=="") $invalid[$domain]=0;
+  	          $invalid[$domain]++;
+  	     }
+         }
+     }
+
+     $msg="批量生成邮箱成功！&nbsp;&nbsp;&nbsp;结果如下：<br>";
+     $msg.="<table width=200><tr><td>邮箱域名</td><td align=center>成功</td><td align=center>失败</td></tr><tr>";
+     foreach($valid as $key=>$val)
+     {
+         if($val=="") $val=0;
+         $bad=$invalid[$key];
+         if($bad=="") $bad=0;
+         $msg.="<tr><td>$key</td><td align=center>$val</td><td align=center><font color=red>$bad</font></td></tr>";     	
+     }
+     $msg.="</tr></table>";
+     MsgBox($msg,1,"mailbox_batch.php","self");
+     exit;
+
+}
+else
+{
+    $domainlist="";
+    $lastdomain="";
+    $sql="select Domain from IP_Bind";
+    $result = mysql_query($sql,$db);
+    while($myrow = mysql_fetch_row($result))
+    {
+        $domain=$myrow[0];
+        if($domain==$lastdomain) continue;
+        $domainlist.="<option value='$domain'>@$domain</option>";
+        $lastdomain=$domain;
+    }
+}
+?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML xml:lang="zn" xmlns="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+<title>批量生成邮箱</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" type="text/css" href="/js/style.css">
+<style>
+DIV.neat-dialog-cont
+{
+   Z-INDEX: 98; BACKGROUND: none transparent scroll repeat 0% 0%; LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%
+}
+DIV.neat-dialog-bg
+{
+   Z-INDEX: -1; FILTER: alpha(opacity=70); LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; BACKGROUND-COLOR: #eee; opacity: 0.7
+}
+DIV.neat-dialog
+{
+   BORDER-RIGHT: #555 1px solid; BORDER-TOP: #555 1px solid; Z-INDEX: 99; MARGIN-LEFT: auto; BORDER-LEFT: #555 1px solid; WIDTH: 320px; MARGIN-RIGHT: auto; BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 10px; POSITION: relative; TOP: 25%; BACKGROUND-COLOR: #fff
+}
+DIV.neat-dialog-title
+{
+   background:url(../images/mmto1.gif);HEIGHT:20px; LINE-HEIGHT: 20px;PADDING-RIGHT: 0.3em; PADDING-LEFT: 0.3em; FONT-SIZE: 12px; PADDING-BOTTOM: 0em; MARGIN: 0px; PADDING-TOP: 0.1em; BORDER-BOTTOM: #444 1px solid; POSITION: relative;
+}
+IMG.nd-cancel
+{
+   RIGHT: 0.2em; POSITION: absolute; TOP: 0.3em
+}
+DIV.neat-dialog P
+{
+   PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; PADDING-TOP: 0.2em; TEXT-ALIGN: center
+}
+</style>
+<script type='text/javascript' src='/js/common.js'></script>
+<script type='text/javascript' src='/js/dialog.js'></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script>
+function precheck()
+{
+
+	if(document.forms[0].keywords.value=="")
+	{
+	    if(val==0)   //原来为空，需要重填
+	    {
+	        alert("请您填写“随机邮箱名”！");
+	        return false;
+	    }
+	    else
+	    {
+	        if(confirm("确定要清空“随机邮箱名”吗？")==false)
+	            return false;
+	    }
+	}
+	
+	return true;
+}
+
+function pointerY()
+{
+     var event = window.event;  //IE下
+     //event=arguments.callee.caller.arguments[0] || window.event; 
+     //event = arguments[0] || window.event;
+     y = event.pageY || (event.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
+     return y;
+}
+function LoadRandomMailBoxName(event)
+{
+     var sHTML = "<table cellspacing=2 cellpadding=2><tr><td>&nbsp;随机生成 <input type=text name='mailbox_num' id='mailbox_num' value='100' style='width:40px;height:18px;'> 个邮箱名 &nbsp;&nbsp;<input type=button value=' 确  定 ' onclick=\"var mailbox_num=document.getElementById('mailbox_num').value;window.neatDialog.close();LoadMailBox1(mailbox_num);\"></td></tr></table>";
+     new NeatDialog(sHTML, "批量生成邮箱", true);
+     if(document.all)
+         document.getElementById("neat-dialog").style.top=pointerY()-120;
+     else
+     {
+             var hp=Math.floor((event.pageY-120)*100/document.body.clientHeight);   //因为一般点的位置是顶偏下10
+             document.getElementById("neat-dialog").style.top=hp+"%";
+
+     }
+}
+function LoadMailBox1(mailbox_num)
+{
+		  $.ajax({
+		  type: "post",
+		  url: "getmailbox.php",
+  		  data:"mailbox_num="+mailbox_num,
+		  cache:false,
+		  beforeSend: function(XMLHttpRequest){    
+		  },
+  		  success: function(data, textStatus){
+    	 	  document.getElementById("keywords").value=data;   //byName不灵
+  		 },
+  		 complete: function(XMLHttpRequest, textStatus){
+  		 },
+  		 error: function(){
+ 		  //请求出错处理
+  		}
+ 	      });
+}
+
+</script>
+<body bgcolor="#FFFFFF">
+
+<p>&nbsp;</p>
+<table width="700" border="0" cellpadding="1" cellspacing="1" bgcolor="#" align=center>
+  <tr bgcolor="#666666"> 
+          
+    <td align="center" colspan="3"><font 
+            color=#ffffff><span style="font-size:14px"><b>--批量生成邮箱--</b></span></font></td>
+        </tr>
+      </table>
+    <div align=center>
+    <table width=500" align="center">
+        <tr>    
+</td>
+    </tr>
+  </table>
+
+<p>&nbsp;</p>
+
+  <form method="post" action="mailbox_batch.php" name=form1>
+    <table width="500" align="center" border="1" bordercolordark="#FFFFFF" bordercolorlight="#000000" cellspacing="0" cellpadding="2">
+      <tr align="left"> 
+        <td height="20" background="../images/mmto1.gif">说明：请每个邮箱名称占一行，无须@及邮箱域名。右栏选择要创建的邮箱域名，可多选 </td>
+      </tr>
+      <tr> 
+        <td> 
+
+          <table border="0" width=90%>
+          <tr>
+          <td align=left>
+            <textarea cols="40" name="keywords" id="keywords" rows="20" style="line-height:1.2;"><?=$KeywordList?></textarea>
+	   </td>
+          <td align=center>
+            <select name="domains[]" multiple size=22><?=$domainlist?></select>
+	   </td>
+	  </tr>
+	  </table> 
+
+        </td>
+      </tr>
+      <tr> 
+        <td align=center height=40> 
+              <input type="hidden" value="Add" name="flag" > 
+              <input type="button" value=" 载入随机邮箱名 " onclick="LoadRandomMailBoxName(event);" style="font-size:12px;"> &nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="submit" value=" 批量生成邮箱 " name="submit"  onclick="return check();" style="font-size:12px;"> 
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  
+      <br>
+      <br>
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+/*container开始*/
+.container{
+    width: 960px;
+    margin: 0 auto;
+    padding-top: 125px;
+    min-height: 839px;
+}
+.container:after{
+     content:"."; 
+     display:block; 
+     height:0; 
+     visibility:hidden; 
+     clear:both;
+}
+/*sidebar开始*/
+.container .sidebar{
+	width: 164px;
+	float: left;
+	border-right: 1px solid #e1dfdc;
+    min-height: 659px;
+}
+
+.sidebar ul{
+	margin-top: 22px;
+}
+
+.sidebar .h3-hover{
+    color: #317BCF;
+    background:#E5E5E5;
+}
+
+.sidebar .h3-selected  {
+    /*position:relative;*/
+    color:#fff;
+    width: 100%;
+    background:#317BCF;
+}
+.key-word{
+    color:#317BCF;
+}
+.sidebar h3{
+    color: #4c4a4a;
+	cursor:pointer;
+    font-size:14px;
+    text-indent:20px;
+    line-height:45px;
+    font-weight: normal;
+    /*border-top: 1px solid #e1dfdc;*/
+}
+#sidebar_search_h3{
+    display: none;
+    margin-bottom: 28px;
+}
+/*sidebar结束*/
+/*content开始*/
+.container .content{
+    margin-left: 166px;
+    padding:23px 0 0 35px;
+    color: #4c4a4a;
+}
+.search {
+    height: 32px;
+    margin-bottom: 21px;
+}
+.search input {
+    border:0;
+    float: left;
+    border-radius:4px 0 0 4px;
+    -moz-border-radius:4px 0 0 4px;
+    -webkit-border-radius:4px 0 0 4px;
+    outline:0;
+    border:1px solid #B8B8B8;
+    width:340px;
+    padding:6px 0;
+    padding-left:20px;
+    border-right:1px solid #B8B8B8
+
+}
+.search input:focus {
+    border-color:#52a8ec;
+    box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075);
+    -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow:0 0 8px rgba(82, 168, 236, .6);
+    -moz-box-shadow:0 0 8px rgba(82, 168, 236, .6);
+    -webkit-box-shadow:0 0 8px rgba(82, 168, 236, .6)
+}
+.search .search-btn {
+    display:block;
+    float: left;
+    border-radius:0 4px 4px 0;
+    -moz-border-radius:0 4px 4px 0;
+    -webkit-border-radius:0 4px 4px 0;
+    border:1px solid #B8B8B8;
+    border-left:0;
+    vertical-align:top;
+    width:28px;
+    height:31px;
+    background:#e7e7e7 url("../images/schBody.png") no-repeat 0 -100px
+}
+.search .search-btn:active {
+    background-position:0 -160px
+}
+/*具体的问题内容*/
+.question-ul{
+}
+.result-ul{
+    display: none;
+}
+.content .search-result{
+    display: block;
+}
+.question-area li{
+    padding-bottom: 12px;
+    line-height: 2;
+}
+
+/*问题标题*/
+.question-area h4{
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+}
+.question-area h4:hover{
+    color: #4183c4;
+}
+/*具体的问题*/
+.question-area p{
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 28px;
+    display: none;
+}
+/*我要提问区域开始*/
+.ask-question{
+    margin-top: 36px;
+    background: #fffdf3;
+    border: 1px solid #e1dfdc;
+    padding: 21px 0 12px 0;
+    text-align: center;
+    
+
+}
+.ask-question p{
+    color: #4c4a4a;
+    font-size: 14px;
+    padding-bottom: 12px;
+}
+.ask-question button{
+    color: #fff;
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #629d16;
+    background: #9bcd5a;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9bcd5a', endColorstr='#92c451',GradientType=0 );
+    background:-moz-linear-gradient(top, #9bcd5a, #92c451);
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#9bcd5a), to(#92c451));
+    background: -o-linear-gradient(top, #9bcd5a, #92c451);
+    background: -ms-linear-gradient(#9bcd5a 0%, #92c451 100%);
+
+}
+/*我要提问区域结束*/
+/*content结束*/
+/*container结束*/
+
+.footer{
+    padding-top: 40px;
+    padding-bottom: 17px;
+}
+

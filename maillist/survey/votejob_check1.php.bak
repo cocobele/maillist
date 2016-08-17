@@ -1,0 +1,243 @@
+<?
+include ("../config.php");
+session_start();
+
+if ($Username=="")
+{
+	MsgBox("系统超时或非法操作!",0,"/");
+	exit;
+}
+
+$TableWidth=$ScreenWidth==800?570:640;
+
+$db = mysql_connect("localhost", "$mysql_user","$mysql_pwd");
+mysql_select_db("maillist",$db);
+
+$sql="select Vote_Template_ID,Vote_Template_Cname,Vote_Template_Begin,Vote_Template_Status from Vote_Template_Dict where Vote_Template_ID=".$Vote_Template_ID;
+//echo $sql;
+$result = mysql_query($sql,$db);
+while($row=mysql_fetch_row($result)){
+		$Name=$row[1];
+		$Begin=$row[2];
+		$Status[$i]=$row[3];
+}
+
+$sql="select Listname from Vote_Template_Feedback where Vote_Template_ID='$ID' ";
+//echo $sql;
+$result = mysql_query($sql,$db);
+$myrow = mysql_fetch_row($result);
+$selectlist=$myrow[0];
+
+?>
+
+
+<html>
+<head>
+<title>调查问卷统计报告</title>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<LINK href="/css/style.css" type=text/css rel=stylesheet>
+<script type='text/javascript' src='/js/common.js'></script>
+<script>
+function check(str)
+{
+	if(str == 0)
+	{
+	  //alert(document.form1.FeedbackEmail.value);
+	  if(confirm('确定该问卷无效并删除吗？'))
+	  { 
+	  	document.form1.IsOK.value='0';
+	  	document.form1.submit();
+	  }
+	}
+	else if (str==1)
+	{
+	  	document.form1.IsOK.value='1';
+	  	document.form1.submit();		
+	}
+
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth=0 marginheight=0>
+
+<p>&nbsp;</p>
+
+<table width="<?=$TableWidth+8?>" border="0" cellpadding="3" cellspacing="0" bgcolor="#" align=center>
+        <tr bgcolor="#666666"> 
+          <td align="center" colspan="3"><font 
+            color=#ffffff><span style="font-size:14.8px"><b>--调查问卷统回收核查--</b></span></font></td>
+        </tr>
+      </table>
+
+<table width="<?=$TableWidth?>" align="center" cellpadding="3" cellspacing="0" bordercolorlight="cccccc" bordercolordark="ffffff" bgcolor="ffffff" border=1>
+    <tr>
+    <td>
+    <table width=100% bgcolor=#eeeeee border=0 cellpadding=0 cellspacing=0>
+        <tr>
+          <td  height=22 nowrap width=10% align=left valign=middle>&nbsp;<b>调查问卷名称</b>：&nbsp;</td>
+          <td align=left valign=middle><?=$Name?></td>
+        </tr>
+        <tr>
+          <td bgcolor="#cccccc" colspan=2></td>
+        </tr>
+        <tr>
+          <td  height=22 nowrap width=10% align=left valign=middle>&nbsp;<b>调查者的Email</b>：&nbsp;</td>
+          <td align=left valign=middle>
+          <?=$FeedbackEmail?>
+            </td>
+        </tr>
+        <tr>
+          <td bgcolor="#cccccc" colspan=2></td>
+        </tr>
+        <tr>
+          <td  height=22 nowrap width=10% align=left valign=middle>&nbsp;<b>问卷回收时间</b>：&nbsp;</td>
+          <td align=left valign=middle>
+          <?=$Time?>
+            </td>
+        </tr>
+        <tr>
+          <td bgcolor="#cccccc" colspan=2></td>
+        </tr>
+	</table>
+
+    <table align=center border=0 cellpadding=0 cellspacing=0 width=<?=$TableWidth?>>
+    <tr>
+      <td>
+
+<?
+
+  $PersionalList=array("Name"=>"姓　　名","Sex"=>"姓　　别","Identity"=>"身份证号","Age"=>"年　　龄","Birth"=>"出生日期",Region=>"所在地区",Address=>"通信住址",Zipcode=>"邮政编码",Tel=>"联系电话",Mobile=>"手机号码",Email=>"电邮地址",QQ=>"OICQ号码",Company=>"单　　位",Title=>"职　　务",Education=>"教育程度",Career=>"职　　业");
+ $NumberList=array("一","二","三","四","五","六","七","八","九","十","十一","十二","十三","十四","十五","十六","十七","十八","十九","二十","二十一","二十二","二十三","二十四","二十五","二十六","二十七","二十八","二十九","三十","三十一","三十二","三十三","三十四","三十五","三十六","三十七","三十八","三十九","四十");
+
+    	$sql="select Vote_Template_ID,Vote_Template_Cname,Vote_Template_Object,Vote_Template_Region,Vote_Template_Intro,
+	Vote_Template_Thanks,Vote_Template_bcolor,Vote_Template_fcolor,Vote_Template_MediaType,Vote_Template_Persional,
+	Vote_Template_Begin,Vote_Template_End,Vote_Template_DesignTime from Vote_Template_Dict where Vote_Template_ID=$Vote_Template_ID";
+	//echo $sql;
+
+    	$result = mysql_query($sql,$db);
+        while ($myrow = mysql_fetch_row($result))
+        {
+	  $ID=$myrow[0];
+	  $Name=$myrow[1];
+	  $Object=$myrow[2];
+	  $Region=$myrow[3];
+	  $Intro=nl2br($$myrow[4]);
+	  $Thanks=nl2br($myrow[5]);
+	  $bcolor=$myrow[6];
+	  $fcolor=$myrow[7];
+	  $MediaType=$myrow[8];
+	  $PrivateInfo=$myrow[9];
+	  $Start_Date=substr($myrow[10],0,10);
+	  $End_Date=substr($myrow[11],0,10);
+	  $Time=$myrow[12];
+	}
+
+
+//取得整个Tree
+$sql="select Item_ID,Type_ID,Item_Parent,Item_Name,Item_Level from Vote_Template_Item_Dict where Vote_Template_ID='$ID' order by Item_ID ";
+$result = mysql_query($sql,$db);
+$i=0;
+while ($row = mysql_fetch_row($result))
+{
+    $Item_ID[$i]=$row[0];
+    $Type_ID[$i]=$row[1];
+    $Item_Parent[$i]=$row[2];
+    $Item_Name[$i]=$row[3];
+    $Item_Level[$i]=$row[4];
+    $i++;
+}
+
+//用户填写资料
+$sql="select Name,ID_Card,Sex,Age,Birthday,Region,Address,Zipcode,Tel,Mobile,Email,QQ,MSN,Education,Career,Company,Title,Income,IP from Vote_Template_Feedback where Vote_Template_ID='$ID' and FeedbackEmail='$FeedbackEmail' ";
+//echo $sql;
+$result = mysql_query($sql,$db);
+$i=0;
+while ($row = mysql_fetch_row($result))
+{
+    $PersionalData["Name"]=$row[0];
+    $PersionalData["Identity"]=$row[1];
+    $PersionalData["Sex"]=$row[2];
+    $PersionalData["Age"]=$row[3];
+    $PersionalData["Birth"]=$row[4];
+    $PersionalData["Region"]=$row[5];
+    $PersionalData["Address"]=$row[6];
+    $PersionalData["Zipcode"]=$row[7];
+    $PersionalData["Tel"]=$row[8];
+    $PersionalData["Mobile"]=$row[9];
+    $PersionalData["Email"]=$row[10];
+    $PersionalData["QQ"]=$row[11];
+    $PersionalData["Company"]=$row[12];
+    $PersionalData["Title"]=$row[13];
+    $PersionalData["Education"]=$row[14];
+    $PersionalData["Career"]=$row[15];
+
+}
+
+//用户填写选项
+$sql="select Item_ID from Vote_Template_Feedback_Detail where Vote_Template_ID='$ID' and FeedbackEmail='$FeedbackEmail' ";
+//echo $sql;
+$result = mysql_query($sql,$db);
+$i=0;
+while ($row = mysql_fetch_row($result))
+{
+    $Item_ID_Selected[$row[0]]="checked";
+    $i++;
+}
+
+
+echo "<br><font color=red style=\"font-size:14.8px\">·问卷内容</font><br><br>";
+
+$j=0;
+for ($i=0;$i<count($Item_ID);$i++)
+{
+
+    if($Item_Level[$i]==1)    // 说明是题目
+    {
+       $Timu_Type=$Type_ID[$i]==1?"radio":"checkbox";
+       echo "<p><font style='font-size:9pt'><font color=red>".$NumberList[$j]."</font>、$Item_Name[$i]</font><br><br>\r\n&nbsp;&nbsp;&nbsp;";
+       $j++;
+    }
+    else if($Item_Level[$i]==2)    // 说明是选项
+    {      
+       echo "<input type=$Timu_Type name=Item_ID".$j."[] value=$Item_ID[$i] ".$Item_ID_Selected[$Item_ID[$i]].">$Item_Name[$i] &nbsp;\r\n";     
+    }
+      
+
+}
+
+$Persional=explode("|",$PrivateInfo);
+if(count($Persional)>0)
+{
+	echo "<br><br><font color=red style=\"font-size:14.8px\">·请填写您的个人资料</font><br><br>";
+	
+	for($i=0;$i<count($Persional);$i++)
+             echo $PersionalList[$Persional[$i]]."：<input type=text size=32 maxlength=64 name='$Persional[$i]' value='".$PersionalData[$Persional[$i]]."'><br>\r\n";
+	
+}
+
+
+echo "</td></tr></table>
+
+
+</td>
+</tr>                    
+</table>
+
+	 <form name=form1 action=votejob_check2.php method=post>
+ 
+	<input type=hidden name=FeedbackEmail value=\"$FeedbackEmail\">\r\n
+	<input type=hidden name=Vote_Template_ID value=\"$Vote_Template_ID\">\r\n
+	<input type=hidden name=PageNo value=\"$PageNo\">\r\n
+	<input type=hidden name='IsOK' value=\"\">\r\n
+	<div align=center><br><input type=button value=\" 确认有效 \" onclick=\"check('1')\">&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value=\" 无效删除 \" onclick=\"check('0')\"><br><br></div>
+
+</form>
+
+";
+
+?>
+
+
+</body>
+</html>

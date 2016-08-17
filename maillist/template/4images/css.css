@@ -1,0 +1,14 @@
+td {
+	font-size: 9pt;
+	line-height: 20px;
+
+}
+a:hover {
+	color: #FF6600;
+	text-decoration: none;
+}
+a {
+	color: #990066;
+	text-decoration: none;
+
+}

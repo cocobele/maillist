@@ -1,0 +1,93 @@
+<HTML>
+<HEAD>
+<TITLE>插入表格</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<STYLE>
+p,td,input,select
+{
+    FONT-SIZE: 9pt
+}
+
+INPUT {
+	BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #cccccc; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #cccccc; PADDING-TOP: 1px; HEIGHT: 18px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #cccccc
+}
+
+
+</STYLE>
+<script language="JavaScript" src="zhongzl.js"></script>
+<SCRIPT language=JavaScript>
+function returnvar () {
+	window.returnValue = rows.value + "*" + columns.value + "*" + width.value + "*" + widthtype.value + "*" + border.value + "*" + cellspacing.value + "*" + cellpadding.value+ "*" + style.value;
+	window.close();
+}
+</SCRIPT>
+</HEAD>
+
+<BODY bgColor=#d4d0c8 leftMargin=2 topMargin=12 marginwidth="2" marginheight="2">
+<CENTER>
+<TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+  <TBODY>
+  <TR>
+    <TD>
+        <TABLE border=0 cellPadding=0 cellSpacing=6 width="100%">
+          <tr> 
+            <td align=right>宽度：</td>
+            <td>
+              <input name=width onFocus=this.select() size=6 value=100>
+            </td>
+            <td align=right> 
+              <select name=widthtype>
+                <option selected value=1>百分比</option>
+                <option value=0>像素</option>
+              </select>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+          <TBODY> 
+          <TR> 
+            <TD align=right>行数：</TD>
+            <TD> 
+              <INPUT name=rows onfocus=this.select() size=6 value=1>
+            </TD>
+            <TD align=right>单元格边距：</TD>
+            <TD> 
+              <INPUT name=cellspacing onfocus=this.select() size=6 value=1>
+            </TD>
+          </TR>
+          <TR> 
+            <TD align=right>列数：</TD>
+            <TD> 
+              <INPUT name=columns onfocus=this.select() size=6 value=1>
+            </TD>
+            <TD align=right>单元格间距：</TD>
+            <TD> 
+              <INPUT name=cellpadding onfocus=this.select() size=6 value=1>
+            </TD>
+          </TR>
+          <TR> 
+            <TD align=right>边框：</TD>
+            <TD> 
+              <INPUT name=border onfocus=this.select() size=6 value=1>
+            </TD>
+            <TD align="right">表格样式：</TD>
+            <TD> 
+              <select name=style>
+                <option value="0">无样式</option>
+                <option value="1">样式一</option>
+                <option value="2">样式二</option>
+              </select>
+            </TD>
+          </TR>
+          </TBODY> 
+        </TABLE>
+	</TD>
+    <TD align=middle vAlign=top>
+      <P><input type=submit onclick="returnvar()" value="确 定"></P>
+      <P><input type=reset onclick="window.close();" value="取 消"></P>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+</CENTER>
+</BODY>
+</HTML>

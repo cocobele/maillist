@@ -1,0 +1,138 @@
+<HTML>
+<HEAD>
+<TITLE>电子邮件营销平台 2016版</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312" >
+<LINK href="css/style.css" type=text/css rel=stylesheet>
+<STYLE>
+HTML {
+	WORD-WRAP: break-word
+}
+BODY {
+	PADDING-BOTTOM: 8px; LINE-HEIGHT: 1.666; MARGIN: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; FONT-FAMILY: arial,verdana,sans-serif; FONT-SIZE: 14px; PADDING-TOP: 18px
+}
+PRE {
+	WORD-WRAP: break-word
+}
+
+</STYLE>
+<SCRIPT language=javascript> 
+function check()
+{ 
+	document.login.ScreenWidth.value=window.screen.width;
+        //document.login.ClientHeight.value=document.documentElement.clientHeight==0?document.body.clientHeight:document.documentElement.clientHeight;
+        document.login.ClientHeight.value=document.body.clientHeight;
+	if(document.login.User.value=="")
+	{
+			alert("请输入用户名！");
+			return false;
+	}
+	if(document.login.Password.value=="")
+	{
+				alert("请输入密码！");
+				return false;
+	}
+ 
+	if(document.login.ValidCode.value=="")
+	{
+		alert("请输入验证码！");
+		document.login.ValidCode.focus();
+		return false;
+	}
+ 
+	return true;
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<TABLE style="FONT-SIZE: 14px" border=0 cellSpacing=0 cellPadding=0 width=606 
+background=images/index_bg.png align=center>
+  <TBODY>
+  <TR>
+    <TD colSpan=3>
+      <TABLE border=0 cellSpacing=0 cellPadding=0 width=606 
+      background=images/top.png height=66>
+        <TBODY>
+        <TR>
+          <TD width=15>&nbsp;</TD>
+          <TD height=61 vAlign=top>
+            <TABLE border=0 cellSpacing=0 cellPadding=0 height=61>
+              <TBODY>
+              <TR>
+                <TD height=15 width=107>&nbsp;</TD>
+                <TD width=107>&nbsp;</TD>
+                <TD width=111>&nbsp;</TD>
+                <TD>&nbsp;</TD></TR>
+              <TR>
+                <TD vAlign=middle align=middle>
+                <!--
+                <IMG border=0 src="images/logo-1.png" width="107" height="27">
+		-->
+		<div class="pngs"><div>
+                </TD>
+                <TD vAlign=top align=middle>&nbsp;</TD>
+                <TD vAlign=top align=middle>&nbsp;</TD></TR></TBODY></TABLE></TD>
+          <TD width=15>&nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD height=165 vAlign=top colSpan=3 align=middle><IMG border=0 src="images/index_title.jpg" width="599" height="124"> </TD>
+  </TR>
+  <TR>
+    <TD width=66>&nbsp;</TD>
+    <TD style="COLOR: rgb(49,49,49); FONT-SIZE: 14px" width=514>
+    <SPAN style="FONT-FAMILY: simhei; COLOR: #006bc0; FONT-SIZE: 18px"><STRONG><font style="FONT-FAMILY: Arial;">EDM</font>邮件营销首选</STRONG></SPAN>&nbsp; 
+      <TABLE style="MARGIN-TOP: 10px" border=0 cellSpacing=0 cellPadding=0 
+      width="100%">
+        <TBODY> 
+        <TR> 
+          <TD vAlign=top width=20><IMG alt="" src="images/index_tick.gif" align=absmiddle></TD>
+          <TD style="LINE-HEIGHT: 25px; FONT-SIZE: 12px"> 采取列表分发机制和基于浏览器的设计结构，客户无须安装任何东西就可直接使用。</TD>
+        </TR>
+        <tr> 
+          <td valign=top width=20><img alt="" src="images/index_tick.gif" width="21" height="20" align=absmiddle></td>
+          <td 
+            style="LINE-HEIGHT: 25px; FONT-SIZE: 12px"> 高性能的大型邮件营销系统，理论处理能力可达千万级别，并拥有更高的处理潜力。</td>
+        </tr>
+        <tr> 
+          <td valign=top width=20><img alt="" src="images/index_tick.gif" width="21" height="20" align=absmiddle></td>
+          <td style="LINE-HEIGHT: 25px; FONT-SIZE: 12px"> 系统对不能正确投递的邮件地址会根据失败原因自动重发，并探测该地址是否存在。</td>
+        </tr>
+        <TR> 
+          <TD vAlign=top width=20><IMG alt="" src="images/index_tick.gif" width="21" height="20" align=absmiddle></TD>
+          <TD style="LINE-HEIGHT: 25px; FONT-SIZE: 12px"> 能探测到邮件阅览及点击链接访问行为，回馈接收者所在位置，精确锁定客户群体。</TD>
+        </TR>
+        </TBODY> 
+      </TABLE>
+      <BR><BR>
+      <table border=0 cellspacing=0 cellpadding=0 width="67%" align="center">
+        <form method=post name=login action=main.php>
+        <input type=hidden name=ScreenWidth>
+        <input type=hidden name=ClientHeight>
+        <tr> 
+          <td>用户名： <input style="WIDTH: 100px; HEIGHT: 18px" class=inp name=User>
+            &nbsp; 密码： <input style="WIDTH: 100px; HEIGHT: 18px" class=inp type=password name=Password>
+            &nbsp; <br>
+            &nbsp; <br>
+            认证码： <input style="WIDTH: 100px; HEIGHT: 18px" class=inp size=4 name=ValidCode>&nbsp;&nbsp;<img align=absMiddle src="validcode.php">
+            <input style="WIDTH: 80px;" onClick="return check();" value=" 登  录 " type=submit name=Submit>
+          </td>
+        </tr>
+      </form>
+      </table>
+      <BR>
+      <BR>
+      <P style="PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-SIZE: 12px; PADDING-TOP: 0px" align="center"><br>
+        推荐在IE系列及IE内核系列浏览器（360、搜狗等）上使用本系统<BR>
+        <BR>
+        <IMG style="DISPLAY: none" border=0 
+      src="images/edm.gif" width="1" height="1"> </P>
+      </TD>
+    <TD width=46>&nbsp;</TD></TR>
+  <TR>
+    <TD colSpan=3>
+      <TABLE border=0 cellSpacing=0 cellPadding=0 width=606>
+        <TBODY></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD height=20 background=images/bottom.jpg 
+  colSpan=3>&nbsp;</TD></TR></TBODY></TABLE>
+<SCRIPT language=javascript>try{parent.JS.modules[window.name].content.setHeight();}catch(e){}</SCRIPT>
+</BODY></HTML>

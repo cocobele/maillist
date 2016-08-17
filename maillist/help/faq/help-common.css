@@ -1,0 +1,90 @@
+body, div, ul, ol, li, h1, h2, h3, h4, h5, h6, p, form, input, button, textarea {
+    margin:0;
+    padding:0;
+    font-family: Microsoft YaHei;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+button, input{
+    outline: none;
+}
+/*头部开始*/
+.header-all{
+    position: fixed;
+    z-index: 20;
+    width: 100%;
+}
+
+/*tittle开始*/
+.tittle{
+    margin: 0 auto;
+    /*padding-top: 62px;*/
+}
+.tittle .tittle-bg{
+    width: 800px;
+    background: #ffffff;
+    border-bottom: 1px solid #e1dfdc;
+    padding-top: 4px
+}
+.tittle .tittle-list{
+    width: 740px;
+    margin: 0 auto;
+	font-size: 14px;
+	font-family: Microsoft YaHei;
+}
+
+.tittle-list li{
+	float: left;
+    margin-right: 9px;
+    background: url(../../images/mmto2.gif);
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+    border-top: 1px solid #c0c0c0;
+    border-left: 1px solid #c0c0c0;
+    border-right: 1px solid #c0c0c0;
+}
+.tittle-list:after{
+     content:"."; 
+     display:block; 
+     height:0; 
+     visibility:hidden; 
+     clear:both;
+}
+.tittle-list a{
+    display: block;
+    padding: 10px 16px;
+    color: #4c4a4a;
+}
+.tittle-list .tittle-active{
+    color: #317bcf;
+    background: #ffffff;
+    padding-top: 7px;
+    border-top: 3px solid #317bcf;
+}
+/*tittle结束*/
+
+
+/*footer开始*/
+.footer{
+    text-align: center;
+    font-size: 12px;
+    font-family: SimSum;
+    color: #a9a9a9;
+}
+.footer li{
+    display: inline-block;
+    padding-right: 12px;
+    padding-left: 10px;
+    border-right: 1px solid #9B938F;
+}
+.footer .last{
+    border-right: 0;
+}
+.footer li a{
+    color: #a9a9a9;
+}
+/*footer结束*/

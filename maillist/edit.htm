@@ -1,0 +1,259 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>代码编辑器</title>
+<script src="abc.js" language="JScript"></script>
+<script src="zhongzl.js" language="JScript"></script>
+<script language="JavaScript">
+function backImg(which) {
+	Format1('pic', '', which);
+}
+function goImg() {
+	//var cur_corp_id = parent.document.forms[0].cur_corp_id.value;
+	//window.open("img.htm?cur_corp_id=" + cur_corp_id, "", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,border=0,width=470,height=200,left=0,top=0");
+	window.open("img.htm", "", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,border=0,width=470,height=200,left=200,top=200");
+}
+
+function format (what, opt) {
+	var tablevar = showModalDialog ("table.htm", "", "dialogWidth:23.6em; dialogHeight:11.3em; status:0;");
+	if (tablevar != null) {
+		tablevar = tablevar.split("*");
+		var rows_v = tablevar[0];
+		var columns_v = tablevar[1];
+		var width_v = tablevar[2];
+		var widthtype_v;
+		if (tablevar[3]) var widthtype_v = "%";
+		var border_v = tablevar[4];
+		var cellspacing_v = tablevar[5];
+		var cellpadding_v = tablevar[6];
+		var style_v = tablevar[7];
+		if(style_v=="") style_v="0";	//显示不同的样式
+		if(style_v=="0")
+			string = "<table border=\"" + border_v + "\" width=\"" + width_v + widthtype_v + "\" cellspacing=\"" + cellspacing_v + "\" cellpadding=\"" + cellpadding_v + "\">";
+		else if(style_v=="1")
+    			string = "<table border=1 width=\"" + width_v + widthtype_v + "\" cellspacing=0 cellpadding=" + cellpadding_v + " bordercolorlight=#000000 bordercolordark=#ffffff>";
+		else if(style_v=="2")
+    			string = "<table border=0 width=\"" + width_v + widthtype_v + "\" cellspacing=1 cellpadding=" + cellpadding_v + " bgcolor=#A4B6D7>";
+
+		for (var i = 1; i <= rows_v; i++){
+			string = string + "<tr bgcolor=#FFFFFF>";
+			for (var i1 = 1; i1 <= columns_v; i1++){
+				string = string + "<td></td>";
+			}
+			string = string + "</tr>";
+		}
+		string = string + "</table>";
+		myEditor.pasteHTML(string);
+	}
+}
+</script>
+</head>
+
+<body SCROLL="no" STYLE="border: 0pt" bgcolor="#ffffff">
+<fieldset>
+<table border="0" cellspacing="0" cellpadding="0" width="100%" bgcolor="#d6d3ce">
+  <tr>
+    <td align="left">
+      <table id="editbar" class="coolBar" cellspacing="0" cellpadding="0" style="font-weight: bold; border: 0 solid buttonface;z-index=2;">
+        <tr>
+          <td class="coolButton" onclick="doFormat('Bold')" title="粗体"><img src="images/bold.gif" WIDTH="16" HEIGHT="16"></td>
+          <td class="coolButton" onclick="doFormat('Italic')" title="斜体"><img src="images/italic.gif" WIDTH="16" HEIGHT="16"></td>
+          <td class="coolButton" onclick="doFormat('Underline')" title="下划线"><img src="images/underline.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('Undo')" title="撤销"><img src="images/undo.gif" width="16" height="16"></td>
+		  <td class="coolButton" onclick="doFormat('Redo')" title="恢复"><img src="images/redo.gif" width="16" height="16"></td>	
+		  <td class="coolButton" onclick="doFormat('JustifyLeft')" title="左对齐"><img src="images/jleft.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('JustifyCenter')" title="居中"><img src="images/jcenter.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('JustifyRight')" title="右对齐"><img src="images/jright.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('Cut')" title="剪切"><img src="images/cut.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('Copy')" title="复制"><img src="images/copy.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('Paste')" title="粘贴"><img src="images/paste.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('Delete')" title="删除"><img src="images/delete.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('CreateLink')" title="插入链结"><img src="images/link.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton"  onclick="goImg()" title="插入图片"><img src="images/image.gif" WIDTH="16" HEIGHT="16"></td>   
+		  <td id="colorbgSelect" style="padding: 0;" title="文字底色"> 
+			<select onChange="doFormat('BackColor',this[this.selectedIndex].style.color); this.selectedIndex=0" style="width: 80px;font-size:9pt">
+			<OPTION selected>文字底色
+			<OPTION style="BACKGROUND: #000000; Color: #000000">Black
+			<OPTION style="BACKGROUND: #0000FF; Color: #0000FF">Blue 1
+			<OPTION style="BACKGROUND: #2222FF; Color: #2222FF">Blue 2
+			<OPTION style="BACKGROUND: #4444FF; Color: #4444FF">Blue 3
+			<OPTION style="BACKGROUND: #6666FF; Color: #6666FF">Blue 4
+			<OPTION style="BACKGROUND: #333333; Color: #333333">Gray 1
+			<OPTION style="BACKGROUND: #666666; Color: #666666">Gray 2
+			<OPTION style="BACKGROUND: #999999; Color: #999999">Gray 3
+			<OPTION style="BACKGROUND: #EEEEEE; Color: #EEEEEE">Gray 4
+			<OPTION style="BACKGROUND: #004000; Color: #004000">Green 1
+			<OPTION style="BACKGROUND: #006000; Color: #006000">Green 2
+			<OPTION style="BACKGROUND: #008000; Color: #008000">Green 3
+			<OPTION style="BACKGROUND: #00A000; Color: #00A000">Green 4
+			<OPTION style="BACKGROUND: #FF0000; Color: #FF0000">Red 1
+			<OPTION style="BACKGROUND: #FF2222; Color: #FF2222">Red 2
+			<OPTION style="BACKGROUND: #FF4444; Color: #FF4444">Red 3
+			<OPTION style="BACKGROUND: #FF6666; Color: #FF6666">Red 4
+			<OPTION style="BACKGROUND: #FFFF00; Color: #FFFF00">Yellow 1
+			<OPTION style="BACKGROUND: #FFFF33; Color: #FFFF33">Yellow 2
+			<OPTION style="BACKGROUND: #FFFF66; Color: #FFFF66">Yellow 3
+			<OPTION style="BACKGROUND: #FFFF99; Color: #FFFF99">Yellow 4
+			<OPTION>自定义..</OPTION>
+			</select>
+		  </td>
+		  <td id="colorSelect" style="padding: 0;" title="文字颜色"> 
+			<select onChange="doFormat('ForeColor',this[this.selectedIndex].style.color); this.selectedIndex=0" style="width: 80px;font-size:9pt">
+			<OPTION selected>文字颜色
+			<OPTION style="BACKGROUND: #000000; Color: #000000">Black
+			<OPTION style="BACKGROUND: #0000FF; Color: #0000FF">Blue 1
+			<OPTION style="BACKGROUND: #2222FF; Color: #2222FF">Blue 2
+			<OPTION style="BACKGROUND: #4444FF; Color: #4444FF">Blue 3
+			<OPTION style="BACKGROUND: #6666FF; Color: #6666FF">Blue 4
+			<OPTION style="BACKGROUND: #333333; Color: #333333">Gray 1
+			<OPTION style="BACKGROUND: #666666; Color: #666666">Gray 2
+			<OPTION style="BACKGROUND: #999999; Color: #999999">Gray 3
+			<OPTION style="BACKGROUND: #EEEEEE; Color: #EEEEEE">Gray 4
+			<OPTION style="BACKGROUND: #004000; Color: #004000">Green 1
+			<OPTION style="BACKGROUND: #006000; Color: #006000">Green 2
+			<OPTION style="BACKGROUND: #008000; Color: #008000">Green 3
+			<OPTION style="BACKGROUND: #00A000; Color: #00A000">Green 4
+			<OPTION style="BACKGROUND: #FF0000; Color: #FF0000">Red 1
+			<OPTION style="BACKGROUND: #FF2222; Color: #FF2222">Red 2
+			<OPTION style="BACKGROUND: #FF4444; Color: #FF4444">Red 3
+			<OPTION style="BACKGROUND: #FF6666; Color: #FF6666">Red 4
+			<OPTION style="BACKGROUND: #FFFF00; Color: #FFFF00">Yellow 1
+			<OPTION style="BACKGROUND: #FFFF33; Color: #FFFF33">Yellow 2
+			<OPTION style="BACKGROUND: #FFFF66; Color: #FFFF66">Yellow 3
+			<OPTION style="BACKGROUND: #FFFF99; Color: #FFFF99">Yellow 4
+			<OPTION>自定义..</OPTION>
+			</select>
+		  </td>
+		  <td id="cssSelect" style="padding: 0;" title="CSS样式"> 
+			<select name="setstyle" onChange="doCss(this.selectedIndex);" style="width: 100px;font-size:9pt">
+			<OPTION selected>CSS样式
+			<OPTION value='0'>无
+			<OPTION value='1'>样式一(9pt)
+			<OPTION value='2'>样式一(11pt)
+			</select>
+		  </td>
+	    </tr>
+	  </table>
+	  <iframe height=1 width=0 style="visibility: hidden" id=uploadback name=uploadback></iframe>
+	  <table id="editbar1" class="coolBar" cellspacing="0" cellpadding="0" style="font-weight: bold; border: 0 solid buttonface;z-index=3;">
+		<tr>	
+		  <td style="width: 3;"> </td>
+		  <td class="coolButton" onclick="doFormat('Outdent')" title="减小缩进"><img src="images/outdent.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('Indent')" title="增加缩进"><img src="images/indent.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('InsertHorizontalRule')" title="插入水平线"><img src="images/hr.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('FormatBlock','&lt;OL&gt;')" title="编号"><img src="images/ol.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('FormatBlock','&lt;UL&gt;')" title="项目符号"><img src="images/ul.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="format('table','')" title="插入表格"><img src="images/table.gif" WIDTH="16" HEIGHT="16"></td>
+		  <td class="coolButton" onclick="doFormat('RemoveFormat')" title="去除格式"><img src="images/unformat.gif" WIDTH="16" HEIGHT="16"></td>
+ 		  <td id="formatSelect" style="padding: 0;" title="段落格式" > 	
+			<select onchange="doSelectClick('FormatBlock',this);this.returnValue=false;" style=" width: 80px;font-size:9pt" id="select1" name="select1">
+				<option>段落格式</option>
+				<option VALUE="&lt;P&gt;">普通
+				<option VALUE="&lt;PRE&gt;">已编排格式
+				<option VALUE="&lt;H1&gt;">标题一
+				<option VALUE="&lt;H2&gt;">标题二
+				<option VALUE="&lt;H3&gt;">标题三
+				<option VALUE="&lt;H4&gt;">标题四
+				<option VALUE="&lt;H5&gt;">标题五
+				<option VALUE="&lt;H6&gt;">标题六
+			</select>
+		  </td>
+		  <td id="fontSelect" style="padding: 0;" title="字体">
+			<select onchange="doSelectClick('FontName',this);" style="width: 50px;font-size:9pt;">
+				<option>字体</option>
+				<option VALUE="宋体">宋体
+				<option VALUE="楷体_GB2312">楷体
+				<option VALUE="隶书">隶书
+				<option VALUE="黑体">黑体
+				<option VALUE="仿宋_GB2312">仿宋
+			</select>
+		  </td>
+		  <td id="sizeSelect" style="padding: 0;" title="字体大小">
+			<select onchange="doSelectClick('FontSize',this);" style="width: 75px;font-size:9pt;">
+				<option>字体大小</option>
+				<option VALUE="1">1
+				<option VALUE="2">2
+				<option VALUE="3">3
+				<option VALUE="4">4
+				<option VALUE="5">5
+				<option VALUE="6">6
+				<option VALUE="7">7
+			</select>
+		  </td>
+		  <td style="padding: 0;" title="特殊字体格式">
+			<select id="specialtype" onchange="doSelectClick('FormatBlock',this);this.returnValue=false;" style=" width: 100px;font-size:9pt;">
+				<option>特殊字体格式</option>
+				<option VALUE="SUP">上标
+				<option VALUE="SUB">下标
+				<option VALUE="DEL">删除线
+				<option VALUE="BLINK">闪烁
+				<option VALUE="BIG">增大字体
+				<option VALUE="SMALL">减小字体
+			</select>
+
+<select name=SwitchVal onchange='getswitchval(this);'><option value=email>邮件地址</option><option value=company>公司名称</option><option value=name>联系人</option></select>
+<script>
+function getswitchval(obj)
+{
+
+    Cur_Element=parent.document.forms[0].body;
+    if(Cur_Element=="")
+    {
+    	alert("尚未指定在何处插入变量，请用鼠标在标题栏或内容栏点一下！");
+    	return;
+    }
+    var str=obj.options[obj.selectedIndex].value;
+    //alert(str);
+    //alert(Cur_Element);
+    str="{%%"+str+"%%}";
+    Insert(Cur_Element,str);
+}
+
+//在指定element中插入字符
+function Insert(element_id,str)
+{
+  //alert(element_id);
+  var obj = document.getElementById(element_id);
+  if(document.selection)
+  {
+    obj.focus();
+    var sel=document.selection.createRange();
+    document.selection.empty();
+    sel.text = str;
+  }
+  else
+  {
+    var prefix, main, suffix;
+    prefix = obj.value.substring(0, obj.selectionStart);
+    main = obj.value.substring(obj.selectionStart, obj.selectionEnd);
+    suffix = obj.value.substring(obj.selectionEnd);
+    obj.value = prefix + str + suffix;
+  }
+    obj.focus();
+}
+
+var Cur_Element="";
+//-->
+</script>
+		  </td>
+	    </tr>
+	  </table>
+	</td>
+  </tr>
+</table>
+</fieldset>
+<iframe ID="edit1" SRC="textedit.htm" NAME="myEditor" onfocus="document.all.editbar._editor = window.frames[this.id];" style="width: 100%; height: 90%;"></iframe>
+<iframe id="uploadback" name="uploadback" style="display:none"></iframe>
+<script language="javascript">
+if(window.navigator.userAgent.indexOf("IE 5")<1 && window.navigator.userAgent.indexOf("IE 6")<1 && window.navigator.userAgent.indexOf("IE 7")<1 && window.navigator.userAgent.indexOf("IE 8")<1  && window.navigator.userAgent.indexOf("IE 9")<1)
+{
+	alert("请使用Microsoft Internet Explorer 5.0\n或更高版本的浏览器！");
+	window.close();
+}
+window.onload = init;
+window.onresize = fixSize;
+document.all.editbar._editor = window.frames[document.all.edit1.id];
+document.all.editbar1._editor = window.frames[document.all.edit1.id];
+</script>
+</body>
+</html>

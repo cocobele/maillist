@@ -1,0 +1,86 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>电子邮件营销平台 2013版</title>
+<link rel="stylesheet" href="/css/style.css">
+<script language="javascript">
+function check() { 
+
+	document.login.ScreenHeight.value=window.screen.height;
+        //document.login.ClientHeight.value=document.documentElement.clientHeight==0?document.body.clientHeight:document.documentElement.clientHeight;
+        document.login.ClientHeight.value=document.body.clientHeight;
+	if(document.login.User.value=="")
+	{
+			alert("请输入用户名！");
+			return false;
+			}
+	if(document.login.Password.value=="")
+	{
+				alert("请输入密码！");
+				return false;
+	}
+
+	if(document.login.ValidCode.value=="")
+	{
+		alert("请输入验证码！");
+		document.login.ValidCode.focus();
+		return false;
+	}
+
+	return true;
+}
+
+</script>
+</head>
+
+<body>
+<form action='/admin/login.php' method='post' name='login'>
+  <div align="center">
+  <center>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <table width="320" border=1 cellpadding="1" cellspacing="0" bgcolor="#ffffff" align="center" bordercolorlight="#000000" bordercolordark="#ffffff">
+        <tr> 
+          <td width="320" height="24" colspan="2" background="../images/mmto1.gif"> 
+            <p align="center">电子邮件平台管理入口 
+          </td>
+    </tr>
+    <tr>
+          <td width="80" height="24" align=right>用户名：</td>
+          <td width="240" height="24" ><!--webbot
+        bot="Validation" B-Value-Required="TRUE" I-Maximum-Length="16" -->
+            <input type="text" name="User" size="24" maxlength="24" style="width:180px;height:18px;background-color:#FAFAFA;border:1 solid black">
+          </td>
+    </tr>
+    <tr>
+          <td width="80" height="24" align=right>密　码：</td>
+          <td width="240" height="24" ><!--webbot
+        bot="Validation" B-Value-Required="TRUE" I-Maximum-Length="16" -->
+            <input type="password" name="Password" size="24" maxlength="24" style="width:180px;height:18px;background-color:#FAFAFA;border:1 solid black">
+          </td>
+    </tr>
+    <tr>
+          <td width="80" height="24" align=right>认证码： </td>
+          <td width="240" height="24" valign=bottom>                        
+                        <input type="text" name="ValidCode" size="4" class=inp  style="width:110px;height:18px;background-color:#FAFAFA;border:1 solid black">
+            <img src="../validcode.php" valign="absbottom" align="absbottom"> 
+          </td>
+    </tr>
+    <tr>
+      <td width="320" height="24" colspan="2">
+        <p align="center">
+              <input type="hidden" name="ScreenHeight">
+              <input type="hidden" name="ClientHeight">
+              <input type="submit" value="登  录" onclick="return check();" style="font-size:9pt">
+            </td>
+    </tr>
+  </table>
+      <p>&nbsp;</p>
+    </center>
+</div>
+</form>
+</body>
+
+</html>

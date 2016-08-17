@@ -1,0 +1,23 @@
+<ATTACH EVENT="onmouseover" ONEVENT="onit()" />
+<ATTACH EVENT="onmousedown" ONEVENT="upit()" />
+<ATTACH EVENT="onmouseup" ONEVENT="onit()" />
+<ATTACH EVENT="onmouseout" ONEVENT="init()" />
+<ATTACH EVENT="oncontentready" ONEVENT="init()" />
+<SCRIPT>
+
+function init() {
+runtimeStyle.border="1px solid buttonface";
+}
+function onit() {
+runtimeStyle.borderRight="1px solid buttonshadow";
+runtimeStyle.borderLeft="1px solid buttonhighlight";
+runtimeStyle.borderBottom="1px solid buttonshadow";
+runtimeStyle.borderTop="1px solid buttonhighlight";
+}
+function upit() {
+runtimeStyle.borderTop="1px solid buttonshadow";
+runtimeStyle.borderBottom="1px solid buttonhighlight";
+runtimeStyle.borderLeft="1px solid buttonshadow";
+runtimeStyle.borderRight="1px solid buttonhighlight";
+}
+</SCRIPT>

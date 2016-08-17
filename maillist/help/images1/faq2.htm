@@ -1,0 +1,133 @@
+
+<!-- saved from url=(0044)http://sendcloud.sohu.com/helpCenter/faq.jsp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="./faq/faq.css">
+
+
+
+
+
+	<title>sendcloud帮助中心</title>
+    <link href="http://sendcloud.sohu.com/favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./faq/help-common.css">
+</head>
+
+<body>
+	 <div class="header-all">
+	    <div class="header">
+	        <div class="header-center">
+	        <a class="logo-a" href="http://sendcloud.sohu.com/"> <img src="./faq/logo.png" alt="sendcloud"></a>
+	            <p class="header-tittle">帮助中心</p>
+	            <div class="header-right">
+		            
+			            <div class="login-area">
+				            <a class="login" href="http://sendcloud.sohu.com/login.do">登录</a><span>|</span><a class="register" href="http://sendcloud.sohu.com/reg.do">注册</a>
+			            </div>
+			            <div class="header-user-info" style="display:none;" id="header-user-info-login">
+			                <span id="header-username"></span><span>|</span><a href="http://sendcloud.sohu.com/data_center.do">进入账户</a>
+			            </div>
+		           	
+		           	
+	           	</div>
+	        </div>
+	    </div>
+	    
+	     <div class="tittle">
+	        <div class="tittle-bg">
+	            <ul class="tittle-list"> 
+	                <li><a href="http://sendcloud.sohu.com/helpCenter/index.jsp">接入指南</a></li>
+	                <li><a class="tittle-active" href="./faq/faq2.htm">常见问题</a></li>
+	                <li><a href="http://sendcloud.sohu.com/helpCenter/feedback.jsp">问题反馈</a></li>
+	                <li><a href="http://sendcloud.sohu.com/helpCenter/service.jsp">联系客服</a></li>
+	                <li><a href="http://sendcloud.sohu.com/helpCenter/agreement.jsp">服务协议</a></li>
+	                <li><a href="http://sendcloud.sohu.com/helpCenter/act-rules.jsp">账户管理规则</a></li>
+	            </ul>
+	        </div>
+	    </div>
+    </div>
+
+
+    <div class="container">
+        <div class="sidebar">
+
+
+            <ul class="sidebar-ul">
+                <li>
+                    <h3 id="sidebar_search_h3">搜索结果</h3>
+                </li>
+                <li>
+                    <h3 class="sidebar-h3">平台规则</h3>
+                </li>
+                <li>
+                    <h3 class="sidebar-h3">账户注册</h3>
+                </li>
+                <li>
+                    <h3 class="sidebar-h3">域名填写与配置</h3>
+                </li>
+                <li>
+                    <h3 class="sidebar-h3 h3-selected">API接口调用</h3>
+                </li>
+                <li>
+                    <h3 class="sidebar-h3">充值付费</h3>
+                </li>
+                <li>
+                    <h3 class="sidebar-h3">发送相关</h3>
+                </li>
+                <li>
+                    <h3 class="sidebar-h3">增值服务</h3>
+                </li>
+                <li>
+                    <h3 class="sidebar-h3">发送数据</h3>
+                </li>
+                <li>
+                    <h3 class="sidebar-h3">样本匹配</h3>
+                </li>
+                <li>
+                    <h3 class="sidebar-h3">其他</h3>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div class="search">
+                <input id="searchIpt" placeholder="请输入关键字">
+                <a id="searchBtn" class="search-btn" href="http://sendcloud.sohu.com/helpCenter/faq.jsp#"></a>
+            </div>
+            <div class="question-area">
+                <ul class="question-ul" style=""><li><h4><span>1. </span>mailfrom和from的区别？在邮箱中是如何体现的？</h4><p style="display: block;">from是邮件内容中的发信人，用户可以在发信代码中自设；mailfrom是smtp会话信息中的发信人，这个地址是由SendCloud系统定义。目前除了发送qq.com邮箱的mailfrom会使用用户在平台自设的发信域名，其他的邮箱发送mailfrom都是使用SendCloud的子域发送，具体的显示形式，可以通过测试发送在邮箱中查看。</p></li><li><h4><span>2. </span>列表发送只有付费能用吗？</h4><p style="display: none;">目前只有付费用户能够使用列表发送，并且只能通过webapi进行列表发送。</p></li><li><h4><span>3. </span>返回"request quota exceeded"什么意思？</h4><p style="display: none;">当天的邮件发送请求量超出了账户的请求额度，账户请求额度具体数据可以登录账户后，在数据中心左下角看到。</p></li><li><h4><span>4. </span>调用PHP API发送邮件时提示 SSL certificate problem, verify that the CA cert is OK. Details:的原因</h4><p style="display: none;">此类错误一般是SSL证书过期导致的，可以在网上下载最新的SSL证书来解决这块。</p></li><li><h4><span>5. </span>{"message":"error","errors":["Parameter html can not be blank!"]}的原因</h4><p style="display: none;">调用webAPi发送邮件时，参数html(即邮件内容)不能为空</p></li><li><h4><span>6. </span>在使用sendcloud的web api的时候，偶尔会有报错的原因？</h4><p style="display: none;">API文档页面有webapi接入的状态码介绍，当出现报错时，请先追踪请求提交时反馈的错误码，对应API文档页面的状态码来查找原因。状态码页面：http://sendcloud.sohu.com/sendcloud/api-doc/status-code</p></li><li><h4><span>7. </span>"sysread_nonblock: end of file reached (EOFError)"的原因</h4><p style="display: none;">发送到附件的文件时，读取文件有误。</p></li><li><h4><span>8. </span>是否有英文版的开发文档</h4><p style="display: none;">暂无英文版的开发文档</p></li><li><h4><span>9. </span>api_key 在哪里可以获取到</h4><p style="display: none;">调用接口的api_user 和 api_key存在用户账户的子账号中，点击“查看”可以获取。</p></li><li><h4><span>10. </span> "X-SMTPAPI email address can not large than 100" 是免费用户的限制吗</h4><p style="display: none;">smtp扩展字段中地址数量上限是100个，一次请求不能超过100个地址。</p></li><li><h4><span>11. </span>SCServiceException: Connection unexpectedly closed 怎么解决</h4><p style="display: none;">检查一下网络连接是否正常，看能否顺利的连接SendCloud的服务器。</p></li><li><h4><span>12. </span>想多加一个 webhook 调试，制定哪个发信域名使用哪个webhook 吗</h4><p style="display: none;">webhook只与事件有关，而与发信域名没有关系，可以让一个或者多个URL来接收webhook推送的消息.</p></li><li><h4><span>13. </span>邮件是用 API 发送 还是直接用 SMTP 发送</h4><p style="display: none;">这两种方式都可以进行邮件发送。Api的示例和smtp服务器、端口号在api文档页面中都可以找到。</p></li><li><h4><span>14. </span>System.Net.Mail.SmtpException: 发送邮件失败。 ---&gt; System.Net.WebException: 未能解析此远程名称: 'smtpcloud.sohu.com'</h4><p style="display: none;">这个状态表示未能正常连接SendCloud邮件发送服务器，请确认网络连接是否正常，能否ping通我们的服务器。</p></li><li><h4><span>15. </span>25端口加SSL协议无法使用你们的服务的原因</h4><p style="display: none;">检查一下您的SSL证书是否已经过期，或者尝试通过TSL认证方式接入试试。</p></li></ul>
+                <ul class="result-ul" style="display: none;">
+                </ul>
+                
+            </div>
+            <div class="ask-question">
+                <p>若无法找到相关问题解答，可以尝试在问题反馈页面编辑问题提交，SendCloud团队会及时答复您！</p>
+                <a href="http://sendcloud.sohu.com/helpCenter/feedback.jsp" target="_blank"><button>我要提问</button></a>
+                
+            </div>
+        </div>
+    </div>
+    <script src="./faq/jquery.js"></script>
+    <script src="./faq/question.js"></script>
+    <script src="./faq/jquery.enplaceholder.js"></script>
+    <script src="./faq/faq.js"></script>
+
+
+
+<div class="footer">
+        <ul>
+            <li><a href="http://sendcloud.sohu.com/helpCenter/service.jsp" target="_blank">联系我们</a>
+            </li>
+            <li><a href="http://sendcloud.sohu.com/api-doc/doc-index" target="_blank">API文档</a>
+            </li>
+            <li><a href="http://sendcloud.sohu.com/helpCenter/index.jsp" target="_blank">帮助</a>
+            </li>
+            <li class="last"><a href="http://blog.sendcloud.org/" target="_blank">博客</a>
+            </li>
+        </ul>
+        <p>Copyright ? 2014 Sohu.com Inc. All Rights Reserved. 搜狐公司 版权所有
+        </p>
+    </div>
+
+
+
+
+<div id="__blankDiv__" style="height:66px;width:100%;clear:both;padding:0;margin:0;position:relative;z-index:-9999;border:none;display:none;"></div></body></html>

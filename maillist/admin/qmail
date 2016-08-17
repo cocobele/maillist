@@ -1,0 +1,79 @@
+#!/bin/sh
+
+PID=`ps -ax |grep qmail-send|grep -v grep`
+PIDQ=`ps -ax |grep qmail-remote|grep -v grep`
+case $1 in
+
+start)
+
+if [ "$PID" = "" ]; then
+echo "Starting Qmail services......"
+sh /etc/qmail/start
+else
+echo "Qmail already running."
+fi
+;;
+
+stop)
+
+if [ "$PID" = "" ]; then
+echo "Qmail not running"
+else
+echo "Stoping Qmail services......"
+killall qmail-send
+killall tcpserver
+if [ "$PIDQ" = "" ]; then
+echo ""
+else
+killall qmail-remote
+fi
+fi
+;;
+
+restart)
+
+if [ "$PID" = "" ]; then
+echo "Qmail not running"
+else
+echo "Restart Qmail services......"
+killall qmail-send
+killall tcpserver
+if [ "$PIDQ" = "" ]; then
+echo ""
+else
+killall qmail-remote
+fi
+sh /etc/qmail/start
+fi
+;;
+
+help)
+
+echo "Qmail manage scripts and Qmail_setup-v1.5 compile by iceblood"
+echo "My E-Mail:iceblood@163.com"
+echo "qmail {start|stop|help}"
+echo "       start      Starting Qmail services"
+echo "       stop       Stoping Qmail services"
+echo "       help       Qmail manage help"
+echo ""
+echo "                       Copyright (C) 2002 by iceblood"
+echo "Help end."
+;;
+
+*)
+
+echo "Qmail manage scripts and Qmail_setup-v1.5 compile by iceblood"
+echo "My E-Mail:iceblood@163.com"
+echo "qmail {start|stop|restart|help}"
+echo "       start      Start Qmail services"
+echo "       stop       Stop Qmail services"
+echo "       restart    Restart Qmail services"
+echo "       help       Qmail manage help"
+echo ""
+echo "                       Copyright (C) 2002 by iceblood"
+echo "Help end."
+
+;;
+
+esac
+exit 0

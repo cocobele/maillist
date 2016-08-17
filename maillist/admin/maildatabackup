@@ -1,0 +1,84 @@
+#!/bin/sh
+
+case $1 in
+
+backup)
+
+echo "Stoping Qmail services......"
+killall qmail-send
+killall tcpserver
+#killall qmail-remote
+
+rm -rf maillistdata
+
+mkdir maillistdata
+
+echo "Backup Maillist System Data......"
+
+/home/httpd/bizsky/maillist/admin/mysqlbackup -uroot -pqazwsx ezmlm > maillistdata/ezmlm.sql
+/home/httpd/bizsky/maillist/admin/mysqlbackup -uroot -pqazwsx maillist > maillistdata/maillist.sql
+
+/home/httpd/bizsky/maillist/backupmsg ~alias/*_list* maillistdata/ -a
+/home/httpd/bizsky/maillist/backupmsg  ~alias/.qmail* maillistdata/ -a
+
+/home/httpd/bizsky/maillist/backupmsg /home/httpd/bizsky/maillist/mail maillistdata/ -a
+
+/home/httpd/bizsky/maillist/backupmsg /var/qmail/queue maillistdata/ -a
+
+#tar -cf maillist_data`date +$(date|cut -c 25-28)%m%d`.tar maillistdata
+tar -cf maillist_data.tar maillistdata
+gzip maillist_data.tar
+
+rm -rf maillistdata
+
+echo "Starting Qmail services......"
+sh /etc/qmail/start
+
+echo "The Maillist System Data has been Backuped in file maillist_data.tar.gz!"
+
+;;
+
+restore)
+
+echo "Stoping Qmail services......"
+killall qmail-send
+killall tcpserver
+#killall qmail-remote
+
+rm -rf maillistdata
+
+tar xzvf maillist_data.tar.gz
+
+echo "Restore Maillist System Data......"
+
+echo "drop database ezmlm;" > maillistdata/db.sql
+echo "create database ezmlm;" >> maillistdata/db.sql
+/home/httpd/bizsky/maillist/admin/mysql -uroot -pqazwsx ezmlm < maillistdata/db.sql
+/home/httpd/bizsky/maillist/admin/mysql -uroot -pqazwsx ezmlm < maillistdata/ezmlm.sql
+
+echo "drop database maillist;" > maillistdata/db.sql
+echo "create database maillist;" >> maillistdata/db.sql
+/home/httpd/bizsky/maillist/admin/mysql -uroot -pqazwsx maillist < maillistdata/db.sql
+/home/httpd/bizsky/maillist/admin/mysql -uroot -pqazwsx maillist < maillistdata/maillist.sql
+	
+rm -rf ~alias/*
+rm -rf ~alias/.qmail*
+
+/home/httpd/bizsky/maillist/backupmsg maillistdata/*_list* ~alias/ -a
+/home/httpd/bizsky/maillist/backupmsg  maillistdata/.qmail* ~alias/ -a
+
+/home/httpd/bizsky/maillist/backupmsg maillistdata/mail /home/httpd/bizsky/maillist/ -a
+
+#/home/httpd/bizsky/maillist/backupmsg maillistdata/queue /var/qmail -a
+
+echo "Starting Qmail services......"
+sh /etc/qmail/start
+
+
+echo "The Maillist System Data has been Restored from file maillist_data.tar.gz!"
+
+
+;;
+
+esac
+exit 0

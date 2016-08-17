@@ -1,0 +1,7 @@
+@qq.com	983
+@163.com	107
+@126.com	29
+@foxmail.com	10
+@sina.com	9
+@vip.qq.com	5
+@sina.cn	5

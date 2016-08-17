@@ -1,0 +1,31 @@
+Message-ID: <{%%const_messageid%%}>
+#Precedence: bulk
+From: =?GBK?B?z+Oy3dXQxrg=?= <service@gksend002.com>
+To: <##L@##H>
+Subject: =?GBK?B?eyUlY29uc3RfZW1haWxuYW1lJSV9ILDZyqS8r83F0fvE48PmytS0orG4teqzpNawzrujrLG+1tzD5srU?=
+Date: Tue, 16 Aug 2016 23:45:02 +0800
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_dBmkAE_3623021_{%%const_msec%%}"
+
+This is a multi-part message in MIME format.
+
+------=_dBmkAE_3623021_{%%const_msec%%}
+Content-Type: text/plain;
+	charset="GBK"
+Content-Transfer-Encoding: quoted-printable
+
+{%%rand_brief1%%}
+
+{%%rand_url%%}
+
+------=_dBmkAE_3623021_{%%const_msec%%}
+Content-Type: text/html;
+	charset="GBK"
+Content-Transfer-Encoding: quoted-printable
+
+{%%rand_brief%%}<br><br><a href=3D"http://{%%const_host%%}/Gy{%%const_tid%%=
+}NM{%%const_mid%%}H0" target=3D_blank>{%%rand_url%%}</a>
+
+------=_dBmkAE_3623021_{%%const_msec%%}--
+

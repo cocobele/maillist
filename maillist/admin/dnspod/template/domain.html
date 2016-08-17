@@ -1,0 +1,32 @@
+<form class="form-inline" method="POST" action="?action=domaincreate">
+<div class="add_domain">
+    <div class="form-group">
+        <input type="text" name="domain" class="form-control" placeholder="如：go360.com" />
+        <input type="submit" class="btn btn-default" value="添加" />
+    </div>
+    <div class="form-group" style="float:right">
+        <input type="submit" class="btn btn-default" value="仅显示本机域名" onclick="document.forms[0].action='?action=localdomainlist';" />&nbsp;&nbsp;
+        <input type="submit" class="btn btn-default" value="批量删除所选域名" onclick="if(confirm('确定要删除这些域名吗？')) document.forms[0].action='?action=batchdomainremove';" />&nbsp;&nbsp;
+        <input type="submit" class="btn btn-default" value="批量添加所选域名的解析记录" onclick="document.forms[0].action='?action=batchdns';" />&nbsp;&nbsp;
+    </div>
+</div>
+<table class="table hovered table-striped">
+    <thead>
+        <tr>
+            <th>编号</th><th>域名</th><th>等级</th><th>状态</th><th>记录</th><th>更新</th><th>操作</th><th>&nbsp;&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{list}}
+    </tbody>
+       <tr>
+            <td colspan=8 align=right>{{count}}</td>
+       </tr>
+</table>
+</form>
+
+<div class="dnspod">
+            <div class="footer text-center">
+                <font color=red>提示</font>：请先将本系统涉及到的所有邮箱域名的DNS服务器设置为：F1G1NS1.DNSPOD.NET 和 F1G1NS2.DNSPOD.NET
+            </div>
+</div>

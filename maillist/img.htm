@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<TITLE>插入图片</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<link href="/js/style.css" rel="stylesheet" type="text/css">
+<script language="JavaScript" src="zhongzl.js"></script>
+<script language="JavaScript" src="datacheck.js"></script>
+<SCRIPT language=JavaScript>
+function returnvar() {
+	var src_value = src.value;
+	src_value = trim(src_value);
+	if(src_value == "" || src_value == "undefined"){
+		alert("请选择图片来源！");
+	}
+	else
+	{
+		//如果src.value为相对路径在HTML 邮件时会出问题
+		if(src.value.indexOf("http://")==-1) src.value= "http://"+location.hostname + src.value;
+		//alert(src.value);
+		var all_values = src.value + "*" + alt.value + "*" + link.value + "*" + arrange.value + "*" + border.value + "*" + iwidth.value + "*" + iheight.value;
+		window.opener.setFocusToEditor();
+		window.opener.backImg(all_values);
+		self.close();
+	}
+}
+function popupCatSel() {
+	var selProdWnd = window.open("img_list.php", "", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,border=0,width=470,height=400,left=0,top=0");
+	src.value = selProdWnd.returnValue;
+}
+</SCRIPT>
+</HEAD>
+<BODY bgColor=#d4d0c8>
+<CENTER>
+<TABLE border=0 cellPadding=0 cellSpacing=4 width=432>
+  <TBODY>
+  <TR>
+    <TD width=70>图片来源:</TD>
+    <TD colspan=3><INPUT id=src name=src ondblclick=return(popupCatSel()) onfocus=this.select() size=40 tabIndex=1 readonly></TD>
+    <TD align=left rowSpan=5 vAlign=top width=56><BUTTON onclick=return(popupCatSel()) type=submit> 浏 览 </BUTTON></TD>
+  </TR>
+  <TR>
+    <TD>替换文字:</TD>
+    <TD colspan=3><INPUT name=alt onfocus=this.select() size=40 tabIndex=2></TD>
+  </TR>
+  <TR>
+    <TD>链接地址:</TD>
+    <TD colspan=3><INPUT name=link onfocus=this.select() size=40 tabIndex=3 value=http://></TD>
+  </TR>
+  <TR>
+    <TD>对齐方式:</TD>
+    <TD>
+	  <SELECT name=arrange tabIndex=4>
+		<OPTION value="">不设置</OPTION>
+        <OPTION selected value=left>左</OPTION>
+		<OPTION value=right>右</OPTION>
+        <OPTION value=texttop>文本上方</OPTION>
+		<OPTION value=absmiddle>正中央</OPTION>
+        <OPTION value=baseline>基线</OPTION>
+		<OPTION value=absbottom>正下方</OPTION> 
+        <OPTION value=bottom>下</OPTION>
+		<OPTION value=middle>中</OPTION>
+		<OPTION value=top>上</OPTION>
+	  </SELECT>
+	</TD>
+    <TD>边框宽度:</TD>
+    <TD><INPUT name=border onfocus=this.select() size=6 tabIndex=5 value=0></TD>
+  </TR>
+  <TR>
+    <TD>图片宽度:</TD>
+    <TD><INPUT name=iwidth onfocus=this.select() size=6 tabIndex=5 value=0></TD>
+    <TD>图片高度:</TD>
+    <TD><INPUT name=iheight onfocus=this.select() size=6 tabIndex=5 value=0></TD>
+  </TR>
+  <TR>
+    <TD>&nbsp;</TD>
+    <TD align=right colSpan=4><BUTTON onclick="returnvar()" tabIndex=6 type=submit> 确 定 </BUTTON>&nbsp;<BUTTON onclick=window.close() tabIndex=7> 取 消 </BUTTON></TD>
+  </TR>
+  </TBODY>
+</TABLE>
+</CENTER>
+</BODY>
+</HTML>

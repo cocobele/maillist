@@ -1,0 +1,84 @@
+<style type="text/css">
+<!--
+
+
+.topic9b {  font-family: "宋体"; font-size: 10.5pt;font-weight:bold; color: #000000;vertcal-align:top ;line-height:15px;}
+.topic9b:link {  font-family: "宋体"; font-size: 10.5pt;font-weight:bold; color: #000000; vertcal-align:top;line-height:15px;}
+.topic9b:visited {  font-family: "宋体"; font-size: 10.5pt;font-weight:bold; color: #000000; vertcal-align:top;line-height:15px;}
+.topic9b:hover {  font-family: "宋体"; font-size: 10.5pt;font-weight:bold; color: #730C34;vertcal-align:top;line-height:15px; }
+
+
+TABLE.ubb,td.ubb
+{
+    border: 1px solid #A9A9A9;
+    FONT-SIZE: 10.5pt; 
+}
+
+INPUT.buttonface
+{
+    background-color: #D2E9FF;
+    COLOR: #000080;
+    FONT-SIZE: 9pt
+}
+
+input.dialogbotton
+     {
+     font-size:9pt;
+     background-color: rgb(255,204,51); 
+     color: rgb(0,0,128) ;
+     }
+     
+select{
+	font-size:9pt;
+	color:navy;
+}
+
+
+.border {  border: #333333; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+
+a:link {text-decoration: none; color:navy;}
+a:visited {text-decoration: none;color:#3366CC}
+a:hover {text-decoration: underline; color:red;}
+
+
+.blank2 { height: 2px; clear: both; font-size: 1px; overflow: hidden; }
+.blank3 { height: 3px; clear: both; font-size: 1px; overflow: hidden; }
+.blank5 { height: 5px; clear: both; font-size: 1px; overflow: hidden; }
+.blank7 { height: 7px; clear: both; font-size: 1px; overflow: hidden; }
+.blank10 { height: 10px; clear: both; font-size: 1px; overflow: hidden; }
+.blank15 { height: 15px; clear: both; font-size: 1px; overflow: hidden; }
+.blank20 { height: 20px; clear: both; font-size: 1px; overflow: hidden; }
+
+INPUT {
+	BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt;height:21px; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #cccccc; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #cccccc; PADDING-TOP: 1px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #cccccc
+}
+
+p,td,input,select,textarea {font-size: 9pt;line-height:14pt;}
+
+th {font-size: 9pt;FONT-WEIGHT:normal;line-height:14pt;}
+-->
+
+DIV.neat-dialog-cont
+{
+   Z-INDEX: 98; BACKGROUND: none transparent scroll repeat 0% 0%; LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%
+}
+DIV.neat-dialog-bg
+{
+   Z-INDEX: -1; FILTER: alpha(opacity=70); LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; BACKGROUND-COLOR: #eee; opacity: 0.7
+}
+DIV.neat-dialog
+{
+   BORDER-RIGHT: #555 1px solid; BORDER-TOP: #555 1px solid; Z-INDEX: 99; MARGIN-LEFT: auto; BORDER-LEFT: #555 1px solid; WIDTH: 320px; MARGIN-RIGHT: auto; BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 10px; POSITION: relative; TOP: 25%; BACKGROUND-COLOR: #fff
+}
+DIV.neat-dialog-title
+{
+   background:url(../images/mmto1.gif);HEIGHT:20px; LINE-HEIGHT: 20px;PADDING-RIGHT: 0.3em; PADDING-LEFT: 0.3em; FONT-SIZE: 12px; PADDING-BOTTOM: 0em; MARGIN: 0px; PADDING-TOP: 0.1em; BORDER-BOTTOM: #444 1px solid; POSITION: relative;
+}
+IMG.nd-cancel
+{
+   RIGHT: 0.2em; POSITION: absolute; TOP: 0.3em
+}
+DIV.neat-dialog P
+{
+   PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; PADDING-TOP: 0.2em; TEXT-ALIGN: center
+}
